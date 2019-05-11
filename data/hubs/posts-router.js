@@ -4,13 +4,9 @@ const db = require("./data/db.js");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send(`<h2>Welcome to the Web API II Challenge Project!</h2>`);
-});
-
 // Returns an array of all the post objects contained in the database.
 
-server.get("/api/posts", async (req, res) => {
+server.get("/", async (req, res) => {
   try {
     const posts = await db.find();
     res.status(200).json(posts);
@@ -22,7 +18,7 @@ server.get("/api/posts", async (req, res) => {
 });
 
 //Returns the post object with the specified id.
-router.get("/api/posts/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const hub = await db.findById(req.params.id);
     if (hub) {
@@ -42,7 +38,7 @@ router.get("/api/posts/:id", async (req, res) => {
 });
 
 // Creates a post using the information sent inside the request body.
-router.post("/api/posts", async (req, res) => {
+router.post("/", async (req, res) => {
   const { title, contents } = req.body;
   try {
     if (title || contents) {
@@ -64,7 +60,7 @@ router.post("/api/posts", async (req, res) => {
 
 //Removes the post with the specified id and returns the deleted post object. You may need to make additional calls to the database in order to satisfy this requirement.
 
-router.delete("/api/posts/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const count = await db.remove(req.params.id);
     if (count > 0) {
@@ -85,7 +81,7 @@ router.delete("/api/posts/:id", async (req, res) => {
 
 //Updates the post with the specified id using data from the request body. Returns the modified document, NOT the original.
 
-router.put("/api/posts/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { title, contents } = req.body;
   try {
