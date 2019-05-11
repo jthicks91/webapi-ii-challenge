@@ -1,12 +1,12 @@
 const express = require("express");
 
-const db = require("./data/db.js");
+const db = require("../db.js");
 
 const router = express.Router();
 
 // Returns an array of all the post objects contained in the database.
 
-server.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const posts = await db.find();
     res.status(200).json(posts);

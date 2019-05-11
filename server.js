@@ -7,7 +7,7 @@ const PostRouter = require("./data/hubs/posts-router.js");
 server.use(express.json());
 server.use("/api/posts", PostRouter);
 
-router.get("/", (req, res) => {
+server.get("/", (req, res) => {
   res.send(`<h2>Welcome to the Web API II Challenge Project!</h2>`);
 });
 
